@@ -73,6 +73,20 @@
   </div>
 </section>
 
+<section id="live" class="livesec">
+  <div class="wrap">
+    <div class="livebox">
+      <button class="yt" type="button" id="liveYt" data-id="oGCe0MBb-wg" data-title="12 Hours of GTA 6 Breakdowns! (Music, Police, Locations, Theories &amp; More)" aria-label="Play: 12 Hours of GTA 6 Breakdowns! (Music, Police, Locations, Theories &amp; More)"><img id="liveImg" src="https://i.ytimg.com/vi/oGCe0MBb-wg/hqdefault.jpg" alt="" loading="lazy"><span class="ytplay"></span></button>
+      <div class="liveinfo">
+        <span class="livebadge" id="liveBadge">LAST LIVE STREAM</span>
+        <h2 class="livetitle" id="liveTitle">12 Hours of GTA 6 Breakdowns! (Music, Police, Locations, Theories &amp; More)</h2>
+        <p id="liveNote">Missed it? Catch up on the full recording.</p>
+        <div class="btns"><a class="btn orange" id="liveLink" href="https://youtu.be/oGCe0MBb-wg">&#9654; Watch on YouTube</a><a class="btn paper" href="https://www.youtube.com/@GTA6Lowdown/streams">All live streams</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="news" class="band-or">
   <div class="wrap">
     <p class="kicker">Latest from Leonida</p>
@@ -185,5 +199,19 @@
 <div class="toast" id="toast" role="status" hidden></div>
 <script src="js/site.js"></script>
 <script src="js/extras.js"></script>
+<script>
+(function(){
+  var esc=function(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML};
+  fetch('data/live.json?'+Date.now()).then(function(r){return r.json()}).then(function(d){
+    if(!d||!d.id)return;
+    var b=document.getElementById('liveYt');
+    if(!b.querySelector('iframe')){b.setAttribute('data-id',d.id);b.setAttribute('data-title',d.title||'');b.setAttribute('aria-label','Play: '+(d.title||'live stream'));document.getElementById('liveImg').src='https://i.ytimg.com/vi/'+d.id+'/hqdefault.jpg'}
+    if(d.title)document.getElementById('liveTitle').innerHTML=esc(d.title);
+    document.getElementById('liveLink').href='https://youtu.be/'+d.id;
+    var box=document.querySelector('.livebox'),bd=document.getElementById('liveBadge');
+    if(d.live){box.classList.add('is-live');bd.innerHTML='<i></i>LIVE NOW';document.getElementById('liveNote').textContent='We\'re live right now. Jump in.';document.getElementById('liveLink').innerHTML='&#9654; Join the live stream'}
+  }).catch(function(){});
+})();
+</script>
 </body>
 </html>

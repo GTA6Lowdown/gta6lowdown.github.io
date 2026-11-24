@@ -1,0 +1,21 @@
+name: Live stream check
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/check_live.py
+      - name: Save if it changed
+        run: |
+          if ! git diff --quiet data/live.json; then
+            git config user.name "lowdown-live-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -am "Live stream status update"
+            git push
+          fi
