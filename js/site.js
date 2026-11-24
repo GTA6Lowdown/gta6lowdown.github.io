@@ -8,14 +8,14 @@
   tg.addEventListener('click',function(){var o=nl.classList.toggle('open');tg.setAttribute('aria-expanded',o)});
   nl.addEventListener('click',function(e){if(e.target.tagName==='A'){nl.classList.remove('open');tg.setAttribute('aria-expanded','false')}});
 
-  // countdown to midnight local, 19 Nov 2026
+  // time since launch: midnight local, 19 Nov 2026
   var target=new Date(2026,10,19,0,0,0);
   function pad(n){return n<10?'0'+n:''+n}
   function tick(){
-    var ms=target-new Date();
-    if(ms<=0){$('#cd').innerHTML='<div style="grid-column:1/-1"><b>IT\'S OUT!</b></div>';$('#cd-note').textContent='GTA 6 is out now on PS5 and Xbox Series X|S.';return}
-    var s=Math.floor(ms/1000);
-    $('#cd-d').textContent=Math.floor(s/86400);$('#cd-h').textContent=pad(Math.floor(s%86400/3600));
+    var ms=new Date()-target;if(ms<0)ms=0;
+    var s=Math.floor(ms/1000),dd=Math.floor(s/86400);
+    $('#cd-d').textContent=dd;$('#cd-dl').textContent=dd===1?'day':'days';
+    $('#cd-h').textContent=pad(Math.floor(s%86400/3600));
     $('#cd-m').textContent=pad(Math.floor(s%3600/60));$('#cd-s').textContent=pad(s%60);
     setTimeout(tick,1000);
   }
