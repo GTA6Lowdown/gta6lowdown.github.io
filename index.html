@@ -76,7 +76,7 @@
 <section id="live" class="livesec">
   <div class="wrap">
     <div class="livebox">
-      <button class="yt" type="button" id="liveYt" data-id="oGCe0MBb-wg" data-title="12 Hours of GTA 6 Breakdowns! (Music, Police, Locations, Theories &amp; More)" aria-label="Play: 12 Hours of GTA 6 Breakdowns! (Music, Police, Locations, Theories &amp; More)"><img id="liveImg" src="https://i.ytimg.com/vi/oGCe0MBb-wg/hqdefault.jpg" alt="" loading="lazy"><span class="ytplay"></span></button>
+      <button class="yt" type="button" id="liveYt" data-id="oGCe0MBb-wg" data-title="12 Hours of GTA 6 Breakdowns! (Music, Police, Locations, Theories &amp; More)" aria-label="Play: 12 Hours of GTA 6 Breakdowns! (Music, Police, Locations, Theories &amp; More)"><img id="liveImg" src="https://i.ytimg.com/vi/oGCe0MBb-wg/maxresdefault.jpg" alt="" loading="lazy" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src=this.src.replace('maxresdefault','hqdefault')}"><span class="ytplay"></span></button>
       <div class="liveinfo">
         <span class="livebadge" id="liveBadge">LAST LIVE STREAM</span>
         <h2 class="livetitle" id="liveTitle">12 Hours of GTA 6 Breakdowns! (Music, Police, Locations, Theories &amp; More)</h2>
@@ -205,7 +205,7 @@
   fetch('data/live.json?'+Date.now()).then(function(r){return r.json()}).then(function(d){
     if(!d||!d.id)return;
     var b=document.getElementById('liveYt');
-    if(!b.querySelector('iframe')){b.setAttribute('data-id',d.id);b.setAttribute('data-title',d.title||'');b.setAttribute('aria-label','Play: '+(d.title||'live stream'));document.getElementById('liveImg').src='https://i.ytimg.com/vi/'+d.id+'/hqdefault.jpg'}
+    if(!b.querySelector('iframe')){b.setAttribute('data-id',d.id);b.setAttribute('data-title',d.title||'');b.setAttribute('aria-label','Play: '+(d.title||'live stream'));var im=document.getElementById('liveImg');im.removeAttribute('data-fb');im.src='https://i.ytimg.com/vi/'+d.id+'/maxresdefault.jpg'}
     if(d.title)document.getElementById('liveTitle').innerHTML=esc(d.title);
     document.getElementById('liveLink').href='https://youtu.be/'+d.id;
     var box=document.querySelector('.livebox'),bd=document.getElementById('liveBadge');
