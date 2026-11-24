@@ -373,6 +373,17 @@ footer p{color:#b89b7f}
   .countdown,.vcard,.tip:not(.sticky),.soon,.cheatbox,.fun,.case,.filters,.heroart,.btn.paper,.p2,.toast{background:var(--card);backdrop-filter:none;-webkit-backdrop-filter:none}
   header.top{background:var(--brown);backdrop-filter:none}
 }
+
+/* watch card (24 Nov) */
+.lwatch{display:grid;grid-template-columns:minmax(0,240px) 1fr;gap:18px;align-items:center;background:var(--brown);color:var(--white);box-shadow:var(--shadow);padding:14px;margin:26px 0}
+.lwatch .lwthumb,.lwatch iframe{position:relative;display:block;aspect-ratio:16/9;width:100%;overflow:hidden;border:0}
+.lwatch .lwthumb img{width:100%;height:100%;object-fit:cover;display:block;margin:0}
+.lwatch .lwplay{position:absolute;inset:0;margin:auto;width:54px;height:54px;border-radius:50%;background:var(--orange);color:var(--brown);display:grid;place-items:center;font-size:22px;padding-left:4px}
+.lwatch figcaption{display:grid;gap:4px;font-size:15px;line-height:1.4}
+.lwatch .lwtag{font-family:var(--display);color:var(--orange);letter-spacing:.06em;font-size:14px}
+.lwatch figcaption b{font-family:var(--display);font-weight:400;font-size:21px;line-height:1.15;color:var(--white)}
+.lwatch .lwbtn{justify-self:start;margin-top:6px;background:var(--orange);color:var(--brown);font-family:var(--display);letter-spacing:.04em;padding:6px 12px;text-decoration:none;font-size:15px}
+@media (max-width:560px){.lwatch{grid-template-columns:1fr}}
 </style>
 <style>
 /* article styles */
@@ -472,6 +483,10 @@ figure{margin:24px 0}
     </ul>
   </aside>
 
+<figure class="lwatch" data-id="b5Z45qWy9F4">
+  <a class="lwthumb" href="https://youtu.be/b5Z45qWy9F4" aria-label="Play video: What Is ACTUALLY Confirmed for GTA 6? (Release Date &amp; More)"><img src="https://i.ytimg.com/vi/b5Z45qWy9F4/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="lwplay" aria-hidden="true">&#9654;</span></a>
+  <figcaption><span class="lwtag">WATCH THE VIDEO</span><b>What Is ACTUALLY Confirmed for GTA 6? (Release Date &amp; More)</b><span>Confirmed vs rumour, sorted.</span><a class="lwbtn" href="https://youtu.be/b5Z45qWy9F4">Watch on YouTube</a></figcaption>
+</figure>
   <nav class="toc" aria-labelledby="toc-h">
     <h2 id="toc-h">On this page</h2>
     <ol>
@@ -752,5 +767,6 @@ figure{margin:24px 0}
   nl.addEventListener('click',function(e){if(e.target.tagName==='A'){nl.classList.remove('open');tg.setAttribute('aria-expanded','false')}});
 })();
 </script>
+<script>document.querySelectorAll('.lwatch .lwthumb').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+a.parentNode.getAttribute('data-id')+'?autoplay=1&rel=0';f.title=a.getAttribute('aria-label');f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;a.replaceWith(f)})})</script>
 </body>
 </html>
