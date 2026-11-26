@@ -127,6 +127,8 @@
   // G's Cache: one hidden stash a day, somewhere on the site
   var GC_PAGES={home:'Home',news:'News',tips:'Tips',guides:'Guides',leonida:'Leonida','games':'Games',cheats:'Cheats','old-games':'Old games',videos:'Videos'};
   var GC_URL={home:'index.html',news:'news.html',tips:'tips.html',guides:'guides.html',leonida:'leonida.html',games:'games.html',cheats:'cheats.html','old-games':'old-games.html',videos:'videos.html'};
+  // FACTS: the daily article run appends one new checked fact at the END each day (newest = today's find).
+  // Don't edit or reorder old lines: a changed fact resets visitors' collections.
   var FACTS=[
     'GTA 6 was first revealed with Trailer 1 on 4 December 2023, set to Tom Petty\'s "Love Is a Long Road".',
     'Trailer 2 arrived on 6 May 2025, with The Pointer Sisters\' "Hot Together".',
@@ -175,7 +177,7 @@
         gc.streak=(gc.last===yesterday)?gc.streak+1:1;
         if(!Array.isArray(gc.items)||gc.items.some(function(x){return FACTS.indexOf(x)<0}))gc.items=[];
         var left=FACTS.filter(function(f){return gc.items.indexOf(f)<0});if(!left.length){gc.items=[];left=FACTS.slice()}
-        var fact=left[hash('fact'+today)%left.length];
+        var newest=FACTS[FACTS.length-1];var fact=left.indexOf(newest)>=0?newest:left[hash('fact'+today)%left.length];
         gc.finds+=1;gc.last=today;gc.items.push(fact);
         store('lowdown-gcache',JSON.stringify(gc));b.remove();
         var m=$('#gcFound');m.querySelector('.amt').textContent=fact;
